@@ -1,6 +1,9 @@
 import { TodoItem } from "../App";
+interface TodoProps extends TodoItem {
+  onRemoveItem: (id: string) => void;
+}
 
-const Todo = ({ id, title, completed }: TodoItem) => {
+const Todo = ({ id, title, completed, onRemoveItem }: TodoProps) => {
   return (
     <div className="view">
       <input
@@ -10,7 +13,7 @@ const Todo = ({ id, title, completed }: TodoItem) => {
         onChange={() => {}}
       />
       <label>{title}</label>
-      <button className="destroy" onClick={() => {}}></button>
+      <button className="destroy" onClick={() => onRemoveItem(id)}></button>
     </div>
   );
 };
