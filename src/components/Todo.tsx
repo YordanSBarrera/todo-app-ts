@@ -1,4 +1,5 @@
-import { TodoItem } from "../App";
+import { TodoItem } from "../utiles";
+
 interface TodoProps extends TodoItem {
   onRemoveItem: (id: string) => void;
 }
