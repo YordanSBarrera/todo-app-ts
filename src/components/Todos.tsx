@@ -3,7 +3,7 @@ import Todo from "./Todo";
 
 interface Props {
   todos: TodoItem[];
-  onRemoveItem: (id: string) => void;
+  onRemoveItem: (id: number) => void;
 }
 
 const Todos = ({ todos, onRemoveItem }: Props) => {

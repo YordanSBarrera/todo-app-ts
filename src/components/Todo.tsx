@@ -1,7 +1,7 @@
 import { TodoItem } from "../utiles";
 
 interface TodoProps extends TodoItem {
-  onRemoveItem: (id: string) => void;
+  onRemoveItem: (id: number) => void;
 }
 
 const Todo = ({ id, title, completed, onRemoveItem }: TodoProps) => {
