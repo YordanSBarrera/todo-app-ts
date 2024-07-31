@@ -19,11 +19,16 @@ const App = () => {
     setTodos((prev) => [...prev, newTodo]);
     setNewText("");
   };
+  const onUpdatedTodo = () => {};
 
   return (
     <div className="todoapp">
       <h1>Mis tareas</h1>
-      <Todos todos={todos} onRemoveItem={onRemoveTodo} />
+      <Todos
+        todos={todos}
+        onRemoveItem={onRemoveTodo}
+        onUpdatedItem={onUpdatedTodo}
+      />
       <input
         type="text"
         value={newText}
