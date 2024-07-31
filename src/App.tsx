@@ -19,7 +19,13 @@ const App = () => {
     setTodos((prev) => [...prev, newTodo]);
     setNewText("");
   };
-  const onUpdatedTodo = () => {};
+  const onUpdatedTodo = (id: number) => {
+    const copy = todos.map((todo) => {
+      todo.id === id ? (todo.completed = !todo.completed) : null;
+      return todo;
+    });
+    setTodos(copy);
+  };
 
   return (
     <div className="todoapp">
