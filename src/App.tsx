@@ -3,13 +3,13 @@ import Todos from "./components/Todos";
 import { FilterValue, TodoItem } from "./utiles";
 import { mockTodos, TODO_FILTERS } from "./consts";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const App = () => {
   const [todos, setTodos] = useState(mockTodos);
   const [filterSelected, setFilterSelected] = useState<FilterValue>(
     TODO_FILTERS.ALL
   );
-  const [newText, setNewText] = useState("");
 
   const activeCount = todos.filter((todo) => !todo.completed).length;
   const completedCount = todos.filter((todo) => todo.completed).length;
@@ -17,20 +17,22 @@ const App = () => {
   const onRemoveTodo = (id: number) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
-
+  const handleRemoveAllCompleted = () => {
+    const newTodos = todos.filter((todo) => !todo.completed);
+    setTodos(newTodos);
+  };
   const handleFilterChange = (filter: FilterValue) => {
     setFilterSelected(filter);
   };
 
-  const onAddTodo = () => {
+  const onAddTodo = (title: string) => {
     const lastItem = todos.length - 1;
     const newTodo: TodoItem = {
       id: todos[lastItem].id + 1,
-      title: newText,
+      title: title,
       completed: false,
     };
     setTodos((prev) => [...prev, newTodo]);
-    setNewText("");
   };
   const onUpdatedTodo = (id: number) => {
     const copy = todos.map((todo) => {
@@ -47,28 +49,19 @@ const App = () => {
 
   return (
     <div className="todoapp">
-      <h1>Mis tareas</h1>
+      <Header onCreateTodo={onAddTodo} />
       <Todos
         todos={filteredTodos}
         onRemoveItem={onRemoveTodo}
         onUpdatedItem={onUpdatedTodo}
       />
-      <input
-        className="toggle"
-        type="text"
-        value={newText}
-        onChange={(ev) => setNewText(ev.target.value)}
-      />
-      <br />
-      <button disabled={!newText} onClick={onAddTodo}>
-        agregar tarea
-      </button>
+
       <Footer
         activeCount={activeCount}
         filterSelected={filterSelected}
         handleFilterChange={handleFilterChange}
         completedCount={completedCount}
-        onClearCompleted={() => {}}
+        onClearCompleted={handleRemoveAllCompleted}
       />
     </div>
   );
