@@ -19,7 +19,7 @@ const Footer = ({
   return (
     <footer className="footer">
       <span className="todo-count">
-        <strong>{activeCount}</strong>Tareas pendientes
+        <strong>{activeCount}</strong> Tareas pendientes
       </span>
       <Filters
         filterSelected={filterSelected}
