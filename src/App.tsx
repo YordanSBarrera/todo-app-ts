@@ -36,6 +36,7 @@ const App = () => {
         onUpdatedItem={onUpdatedTodo}
       />
       <input
+        className="toggle"
         type="text"
         value={newText}
         onChange={(ev) => setNewText(ev.target.value)}
